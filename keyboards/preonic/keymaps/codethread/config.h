@@ -36,7 +36,7 @@
 
 #define MIDI_BASIC
 
-#define TAPPING_TERM 170 // default 200
+#define TAPPING_TERM 140 // default 200
 
 /* enable advanced MIDI features:
    - MIDI notes can be added to the keymap
