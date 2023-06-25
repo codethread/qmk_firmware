@@ -12,7 +12,12 @@ want somewhere better for this
 
 backspace under right thumb, so need alt on left?
 
-# The default Preonic layout - largely based on the Planck's
+currently trying home row mods, so have it easy to toggle with bottom right key
+will have to play around with tap timeouts to get the feeling
+
+from the docs on tap term:
+
+> If you find that you frequently trigger the modifier of your mod-tap(s) by accident, for example, that's a sign that your tapping term may be too low so tap DT_UP a few times to increase the tapping term until that no longer happens. On the flip side, if you get superfluous characters when you actually intended to momentarily activate a layer, tap DT_DOWN to lower the tapping term.
 
 ## Setup for future
 
@@ -43,5 +48,5 @@ qmk compile -kb preonic/rev3_drop -km codethread
 
 ```sh
 # put keyboard in boot mode
-sleep 5 && qmk flash
+qmk compile && qmk flash
 ```

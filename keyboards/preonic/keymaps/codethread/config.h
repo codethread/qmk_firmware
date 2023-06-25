@@ -36,7 +36,7 @@
 
 #define MIDI_BASIC
 
-#define TAPPING_TERM 140 // default 200
+#define TAPPING_TERM 180         // default 200
 #define IGNORE_MOD_TAP_INTERRUPT // saw used here https://github.com/Me163/keyboard_layouts_qmk/blob/master/iris/config.h, by someone using homerow mods
 
 /* enable advanced MIDI features:
@@ -45,7 +45,7 @@
    - Virtual sustain, portamento, and modulation wheel
    - etc.
 */
-//#define MIDI_ADVANCED
+// #define MIDI_ADVANCED
 
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
-//#define MIDI_TONE_KEYCODE_OCTAVES 2
+// #define MIDI_TONE_KEYCODE_OCTAVES 2
