@@ -1,1 +1,2 @@
 SRC += muse.c
+DYNAMIC_TAPPING_TERM_ENABLE = yes
