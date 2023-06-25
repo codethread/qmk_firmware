@@ -37,6 +37,7 @@
 #define MIDI_BASIC
 
 #define TAPPING_TERM 140 // default 200
+// #define IGNORE_MOD_TAP_INTERRUPT // saw used here https://github.com/Me163/keyboard_layouts_qmk/blob/master/iris/config.h, by someone using homerow mods
 
 /* enable advanced MIDI features:
    - MIDI notes can be added to the keymap
