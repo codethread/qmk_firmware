@@ -11,6 +11,12 @@ enum preonic_layers {
   _ADJUST
 };
 
+enum custom_keycodes {
+    UPDIR = SAFE_RANGE,
+
+    ARROW,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //        ┌─────────────┬──────┬──────┬──────┬───────────────────┬──────┐   ┌────────────────┬───────────────────┬──────┬─────┬─────┬──────┐
 //        │     esc     │  1   │  2   │  3   │         4         │  5   │   │       6        │         7         │  8   │  9  │  0  │ f12  │
@@ -31,21 +37,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       MO(_ADJUST) , KC_LCTL , KC_LALT , KC_LGUI , LT(_SYMBOLS, KC_ENT) , KC_LSFT ,     LT(_NAV, KC_BSPC) , LT(_NUMBERS, KC_SPC) , KC_LALT , _______ , _______ , _______
 ),
 
-//        ┌─────┬─────┬─────┬─────┬────────┬─────┐   ┌─────────┬─────┬─────┬─────┬─────┬─────┐
-//        │ f14 │ f1  │ f2  │ f3  │   f4   │ f5  │   │   f6    │ f7  │ f8  │ f9  │ f10 │ f11 │
-//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │     │  *  │  _  │   %    │  @  │   │         │  [  │  ]  │  $  │     │     │
-//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │  !  │  =  │  (  │   )    │  ~  │   │    -    │  {  │  }  │  >  │  \  │     │
-//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │     │  ^  │  &  │   +    │     │   │         │  |  │  `  │  #  │     │     │
-//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │     │     │     │ G(ent) │     │   │ A(bspc) │     │     │     │     │     │
-//        └─────┴─────┴─────┴─────┴────────┴─────┘   └─────────┴─────┴─────┴─────┴─────┴─────┘
+//        ┌─────┬─────┬─────┬─────┬────────┬─────┐   ┌─────────┬─────┬─────┬─────┬─────┬───────┐
+//        │ f14 │ f1  │ f2  │ f3  │   f4   │ f5  │   │   f6    │ f7  │ f8  │ f9  │ f10 │  f11  │
+//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼───────┤
+//        │     │     │  *  │  _  │   %    │  @  │   │  UPDIR  │  [  │  ]  │  $  │     │       │
+//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼───────┤
+//        │     │  !  │  =  │  (  │   )    │  ~  │   │    -    │  {  │  }  │  >  │  \  │ ARROW │
+//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼───────┤
+//        │     │     │  ^  │  &  │   +    │     │   │         │  |  │  `  │  #  │     │       │
+//        ├─────┼─────┼─────┼─────┼────────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼───────┤
+//        │     │     │     │     │ G(ent) │     │   │ A(bspc) │     │     │     │     │       │
+//        └─────┴─────┴─────┴─────┴────────┴─────┘   └─────────┴─────┴─────┴─────┴─────┴───────┘
 [_SYMBOLS] = LAYOUT_preonic_grid(
       KC_F14  , KC_F1      , KC_F2         , KC_F3         , KC_F4          , KC_F5    ,     KC_F6      , KC_F7               , KC_F8                , KC_F9     , KC_F10       , KC_F11 ,
-      _______ , _______    , KC_ASTERISK   , KC_UNDERSCORE , KC_PERCENT     , KC_AT    ,     _______    , KC_LEFT_BRACKET     , KC_RIGHT_BRACKET     , KC_DOLLAR , _______      , _______,
-      _______ , KC_EXCLAIM , KC_EQUAL      , KC_LEFT_PAREN , KC_RIGHT_PAREN , KC_TILDE ,     KC_MINUS   , KC_LEFT_CURLY_BRACE , KC_RIGHT_CURLY_BRACE , KC_GT     , KC_BACKSLASH , _______,
+      _______ , _______    , KC_ASTERISK   , KC_UNDERSCORE , KC_PERCENT     , KC_AT    ,     UPDIR      , KC_LEFT_BRACKET     , KC_RIGHT_BRACKET     , KC_DOLLAR , _______      , _______,
+      _______ , KC_EXCLAIM , KC_EQUAL      , KC_LEFT_PAREN , KC_RIGHT_PAREN , KC_TILDE ,     KC_MINUS   , KC_LEFT_CURLY_BRACE , KC_RIGHT_CURLY_BRACE , KC_GT     , KC_BACKSLASH , ARROW  ,
       _______ , _______    , KC_CIRCUMFLEX , KC_AMPR       , KC_PLUS        , _______  ,     _______    , KC_PIPE             , KC_GRAVE             , KC_HASH   , _______      , _______,
       _______ , _______    , _______       , _______       , G(KC_ENT)      , _______  ,     A(KC_BSPC) , _______             , _______              , _______   , _______      , _______
 ),
@@ -108,3 +114,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 // clang-format on
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // Get current mod and one-shot mod states.
+    const uint8_t mods         = get_mods();
+    const uint8_t oneshot_mods = get_oneshot_mods();
+
+    switch (keycode) {
+        case UPDIR: // Types ../ to go up a directory on the shell.
+            if (record->event.pressed) {
+                SEND_STRING("../");
+            }
+            return false;
+
+        case ARROW: // Arrow macro, types -> or =>.
+            if (record->event.pressed) {
+                if ((mods | oneshot_mods) & MOD_MASK_SHIFT) { // Is shift held?
+                    // Temporarily delete shift.
+                    del_oneshot_mods(MOD_MASK_SHIFT);
+                    unregister_mods(MOD_MASK_SHIFT);
+                    SEND_STRING("->");
+                    register_mods(mods); // Restore mods.
+                } else {
+                    SEND_STRING("=>");
+                }
+            }
+            return false;
+    }
+    return true;
+}
