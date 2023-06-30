@@ -14,8 +14,13 @@ want somewhere better for this
 
 backspace under right thumb, so need alt on left?
 
-currently trying home row mods, so have it easy to toggle with bottom right key
-will have to play around with tap timeouts to get the feeling
+moved under right thumb and put cmd+enter + alt+backspace on dedicated keys
+
+### removing right mod
+
+-   can't do dash with shift under thumb
+
+### Mod tap
 
 from the docs on tap term:
 
