@@ -57,3 +57,7 @@ qmk compile -kb preonic/rev3_drop -km codethread
 # put keyboard in boot mode
 qmk compile && qmk flash
 ```
+
+## Links
+
+-   [key macros](https://getreuer.info/posts/keyboards/macros/index.html)
