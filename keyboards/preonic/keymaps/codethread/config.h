@@ -5,4 +5,6 @@
 // times to increase the tapping term until that no longer happens. On the flip side,
 // if you get superfluous characters when you actually intended to momentarily activate
 // a layer, tap DT_DOWN to lower the tapping term.
-#define TAPPING_TERM 100 // default 200
+#define TAPPING_TERM \
+    100 // default 200
+        // 100,pretty darn tough, need to really tap that mofo
