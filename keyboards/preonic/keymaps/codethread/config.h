@@ -8,3 +8,6 @@
 #define TAPPING_TERM \
     140 // default 200
         // 100,pretty darn tough, need to really tap that mofo
+
+// trying this for home mods
+#define IGNORE_MOD_TAP_INTERRUPT
