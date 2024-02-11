@@ -10,6 +10,8 @@ test comit
 
 ### Alt / Meta
 
+24/02/11: currently trying it under the right thumb as a modifer with space - but using a whole layer, which seems to be far more reliable as a layer toggle than a modifer
+
 want somewhere better for this
 
 backspace under right thumb, so need alt on left?
@@ -56,6 +58,10 @@ qmk compile -kb preonic/rev3_drop -km codethread
 ```sh
 # put keyboard in boot mode
 qmk compile && qmk flash
+```
+
+```nu
+sleep 3sec; qmk compile; qmk flash
 ```
 
 ## Links
