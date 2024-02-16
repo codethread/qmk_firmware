@@ -1,58 +1,107 @@
 #include QMK_KEYBOARD_H
+#include "flow.h"
 
 // https://docs.qmk.fm/#/keycodes?id=midi
 
 // clang-format off
 enum preonic_layers {
   _QWERTY,
-  _SYMBOLS,
+  _SYMBOLS_L,
+  _SYMBOLS_R,
   _NUMBERS,
-  _NAV,
-  _ADJUST
+  _ADJUST,
 };
 
 enum custom_keycodes {
     UPDIR = SAFE_RANGE,
     ARROW,
+
+    OS_SYM_L,
+    OS_SYM_R
+};
+
+
+#define L_NAV       MO(_SYMBOLS_L)
+#define L_SYM       MO(_SYMBOLS_R)
+
+// flow_config should correspond to following format:
+// * layer keycode
+// * modifier keycode
+const uint16_t flow_config[FLOW_COUNT][2] = {
+    {L_NAV, KC_LALT},
+    {L_NAV, KC_LGUI},
+    {L_NAV, KC_LCTL},
+    {L_NAV, KC_LSFT},
+
+    {L_SYM, KC_LCTL},
+    {L_SYM, KC_LGUI},
+    {L_SYM, KC_LALT},
+};
+
+// for layers configuration follow this format:
+// * custom layer key
+// * layer name
+const uint16_t flow_layers_config[FLOW_LAYERS_COUNT][2] = {
+    {OS_SYM_L, _SYMBOLS_L},
+    {OS_SYM_R, _SYMBOLS_R},
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//        ┌─────────────┬─────┬─────┬──────┬───────────────────┬──────────────┐   ┌────────────────┬────────────┬─────┬─────┬─────┬──────┐
-//        │     esc     │  1  │  2  │  3   │         4         │      5       │   │       6        │     7      │  8  │  9  │  0  │ f12  │
-//        ├─────────────┼─────┼─────┼──────┼───────────────────┼──────────────┤   ├────────────────┼────────────┼─────┼─────┼─────┼──────┤
-//        │     tab     │  q  │  w  │  e   │         r         │      t       │   │       y        │     u      │  i  │  o  │  p  │  _   │
-//        ├─────────────┼─────┼─────┼──────┼───────────────────┼──────────────┤   ├────────────────┼────────────┼─────┼─────┼─────┼──────┤
-//        │    lctl     │  a  │  s  │  d   │         f         │      g       │   │       h        │     j      │  k  │  l  │  ;  │  '   │
-//        ├─────────────┼─────┼─────┼──────┼───────────────────┼──────────────┤   ├────────────────┼────────────┼─────┼─────┼─────┼──────┤
-//        │    lsft     │  z  │  x  │  c   │         v         │      b       │   │       n        │     m      │  ,  │  .  │  /  │ rsft │
-//        ├─────────────┼─────┼─────┼──────┼───────────────────┼──────────────┤   ├────────────────┼────────────┼─────┼─────┼─────┼──────┤
-//        │ MO(_ADJUST) │     │     │ lgui │ LT(_SYMBOLS, ent) │ MO(_NUMBERS) │   │ LT(_NAV, bspc) │ ALT_T("_") │     │     │     │      │
-//        └─────────────┴─────┴─────┴──────┴───────────────────┴──────────────┘   └────────────────┴────────────┴─────┴─────┴─────┴──────┘
+//        ┌─────────────┬─────┬─────┬──────┬───────┬──────────────┐   ┌────────────────┬───────┬─────┬─────┬─────┬──────┐
+//        │     esc     │  1  │  2  │  3   │   4   │      5       │   │       6        │   7   │  8  │  9  │  0  │ f12  │
+//        ├─────────────┼─────┼─────┼──────┼───────┼──────────────┤   ├────────────────┼───────┼─────┼─────┼─────┼──────┤
+//        │     tab     │  q  │  w  │  e   │   r   │      t       │   │       y        │   u   │  i  │  o  │  p  │  _   │
+//        ├─────────────┼─────┼─────┼──────┼───────┼──────────────┤   ├────────────────┼───────┼─────┼─────┼─────┼──────┤
+//        │    lctl     │  a  │  s  │  d   │   f   │      g       │   │       h        │   j   │  k  │  l  │  ;  │  '   │
+//        ├─────────────┼─────┼─────┼──────┼───────┼──────────────┤   ├────────────────┼───────┼─────┼─────┼─────┼──────┤
+//        │    lsft     │  z  │  x  │  c   │   v   │      b       │   │       n        │   m   │  ,  │  .  │  /  │ rsft │
+//        ├─────────────┼─────┼─────┼──────┼───────┼──────────────┤   ├────────────────┼───────┼─────┼─────┼─────┼──────┤
+//        │ MO(_ADJUST) │     │ ent │ lgui │ L_NAV │ MO(_NUMBERS) │   │ LT(_NAV, bspc) │ L_SYM │ "_" │     │     │      │
+//        └─────────────┴─────┴─────┴──────┴───────┴──────────────┘   └────────────────┴───────┴─────┴─────┴─────┴──────┘
 [_QWERTY] = LAYOUT_preonic_grid(
-      KC_ESC      , KC_1    , KC_2    , KC_3    , KC_4                 , KC_5         ,     KC_6              , KC_7          , KC_8    , KC_9    , KC_0    , KC_F12       ,
-      KC_TAB      , KC_Q    , KC_W    , KC_E    , KC_R                 , KC_T         ,     KC_Y              , KC_U          , KC_I    , KC_O    , KC_P    , KC_UNDERSCORE,
-      KC_LCTL     , KC_A    , KC_S    , KC_D    , KC_F                 , KC_G         ,     KC_H              , KC_J          , KC_K    , KC_L    , KC_SCLN , KC_QUOT      ,
-      KC_LSFT     , KC_Z    , KC_X    , KC_C    , KC_V                 , KC_B         ,     KC_N              , KC_M          , KC_COMM , KC_DOT  , KC_SLSH , KC_RSFT      ,
-      MO(_ADJUST) , _______ , _______ , KC_LGUI , LT(_SYMBOLS, KC_ENT) , MO(_NUMBERS) ,     LT(_NAV, KC_BSPC) , ALT_T(KC_SPC) , _______ , _______ , _______ , _______
+      KC_ESC      , KC_1    , KC_2   , KC_3    , KC_4  , KC_5         ,     KC_6              , KC_7  , KC_8    , KC_9    , KC_0    , KC_F12       ,
+      KC_TAB      , KC_Q    , KC_W   , KC_E    , KC_R  , KC_T         ,     KC_Y              , KC_U  , KC_I    , KC_O    , KC_P    , KC_UNDERSCORE,
+      KC_LCTL     , KC_A    , KC_S   , KC_D    , KC_F  , KC_G         ,     KC_H              , KC_J  , KC_K    , KC_L    , KC_SCLN , KC_QUOT      ,
+      KC_LSFT     , KC_Z    , KC_X   , KC_C    , KC_V  , KC_B         ,     KC_N              , KC_M  , KC_COMM , KC_DOT  , KC_SLSH , KC_RSFT      ,
+      MO(_ADJUST) , _______ , KC_ENT , KC_LGUI , L_NAV , MO(_NUMBERS) ,     LT(_NAV, KC_BSPC) , L_SYM , KC_SPC  , _______ , _______ , _______
 ),
 
-//        ┌─────┬─────┬─────┬─────┬─────┬─────┐   ┌─────────┬─────┬─────┬─────┬─────┬─────┐
-//        │ f14 │ f1  │ f2  │ f3  │ f4  │ f5  │   │   f6    │ f7  │ f8  │ f9  │ f10 │ f11 │
-//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │     │  *  │  _  │  %  │  @  │   │   ../   │  [  │  ]  │  $  │     │     │
-//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │  !  │  =  │  (  │  )  │  ~  │   │    -    │  {  │  }  │  >  │  \  │ =>  │
-//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │     │  ^  │  &  │  +  │     │   │         │  |  │  `  │  #  │     │     │
-//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────────┼─────┼─────┼─────┼─────┼─────┤
-//        │     │     │     │     │     │     │   │ A(bspc) │     │     │     │     │     │
-//        └─────┴─────┴─────┴─────┴─────┴─────┘   └─────────┴─────┴─────┴─────┴─────┴─────┘
-[_SYMBOLS] = LAYOUT_preonic_grid(
-      KC_F14  , KC_F1      , KC_F2         , KC_F3         , KC_F4          , KC_F5    ,     KC_F6      , KC_F7               , KC_F8                , KC_F9     , KC_F10       , KC_F11 ,
-      _______ , _______    , KC_ASTERISK   , KC_UNDERSCORE , KC_PERCENT     , KC_AT    ,     UPDIR      , KC_LEFT_BRACKET     , KC_RIGHT_BRACKET     , KC_DOLLAR , _______      , _______,
-      _______ , KC_EXCLAIM , KC_EQUAL      , KC_LEFT_PAREN , KC_RIGHT_PAREN , KC_TILDE ,     KC_MINUS   , KC_LEFT_CURLY_BRACE , KC_RIGHT_CURLY_BRACE , KC_GT     , KC_BACKSLASH , ARROW  ,
-      _______ , _______    , KC_CIRCUMFLEX , KC_AMPR       , KC_PLUS        , _______  ,     _______    , KC_PIPE             , KC_GRAVE             , KC_HASH   , _______      , _______,
-      _______ , _______    , _______       , _______       , _______        , _______  ,     A(KC_BSPC) , _______             , _______              , _______   , _______      , _______
+//        ┌─────┬──────┬──────┬──────┬──────┬─────┐   ┌─────┬─────┬─────┬─────┬─────┬─────┐
+//        │ f14 │  f1  │  f2  │  f3  │  f4  │ f5  │   │ f6  │ f7  │ f8  │ f9  │ f10 │ f11 │
+//        ├─────┼──────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+//        │     │      │  *   │  _   │  %   │  @  │   │ ../ │  [  │  ]  │  $  │     │     │
+//        ├─────┼──────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+//        │     │ lsft │ lalt │ lctl │ lgui │  ~  │   │  -  │  {  │  }  │  >  │  \  │ =>  │
+//        ├─────┼──────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+//        │     │      │  ^   │  &   │  +   │     │   │     │  |  │  `  │  #  │     │     │
+//        ├─────┼──────┼──────┼──────┼──────┼─────┤   ├─────┼─────┼─────┼─────┼─────┼─────┤
+//        │     │      │      │      │      │     │   │     │     │     │     │     │     │
+//        └─────┴──────┴──────┴──────┴──────┴─────┘   └─────┴─────┴─────┴─────┴─────┴─────┘
+[_SYMBOLS_L] = LAYOUT_preonic_grid(
+      KC_F14  , KC_F1   , KC_F2         , KC_F3         , KC_F4      , KC_F5    ,     KC_F6    , KC_F7               , KC_F8                , KC_F9     , KC_F10       , KC_F11 ,
+      _______ , _______ , KC_ASTERISK   , KC_UNDERSCORE , KC_PERCENT , KC_AT    ,     UPDIR    , KC_LEFT_BRACKET     , KC_RIGHT_BRACKET     , KC_DOLLAR , _______      , _______,
+      _______ , KC_LSFT , KC_LALT       , KC_LCTL       , KC_LGUI    , KC_TILDE ,     KC_MINUS , KC_LEFT_CURLY_BRACE , KC_RIGHT_CURLY_BRACE , KC_GT     , KC_BACKSLASH , ARROW  ,
+      _______ , _______ , KC_CIRCUMFLEX , KC_AMPR       , KC_PLUS    , _______  ,     _______  , KC_PIPE             , KC_GRAVE             , KC_HASH   , _______      , _______,
+      _______ , _______ , _______       , _______       , _______    , _______  ,     _______  , _______             , _______              , _______   , _______      , _______
+),
+
+//        ┌─────┬─────┬─────┬─────┬─────┬─────┐   ┌─────┬──────┬──────┬──────┬─────┬─────┐
+//        │ f14 │ f1  │ f2  │ f3  │ f4  │ f5  │   │ f6  │  f7  │  f8  │  f9  │ f10 │ f11 │
+//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼──────┼──────┼──────┼─────┼─────┤
+//        │     │     │  *  │  _  │  %  │  @  │   │ ../ │  [   │  ]   │  $   │     │     │
+//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼──────┼──────┼──────┼─────┼─────┤
+//        │     │  !  │  =  │  (  │  )  │  ~  │   │  -  │ lgui │ lctl │ lalt │     │ =>  │
+//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼──────┼──────┼──────┼─────┼─────┤
+//        │     │     │  ^  │  &  │  +  │     │   │     │  |   │  `   │  #   │     │     │
+//        ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼──────┼──────┼──────┼─────┼─────┤
+//        │     │     │     │     │     │     │   │     │      │      │      │     │     │
+//        └─────┴─────┴─────┴─────┴─────┴─────┘   └─────┴──────┴──────┴──────┴─────┴─────┘
+[_SYMBOLS_R] = LAYOUT_preonic_grid(
+      KC_F14  , KC_F1      , KC_F2         , KC_F3         , KC_F4          , KC_F5    ,     KC_F6    , KC_F7           , KC_F8            , KC_F9     , KC_F10  , KC_F11 ,
+      _______ , _______    , KC_ASTERISK   , KC_UNDERSCORE , KC_PERCENT     , KC_AT    ,     UPDIR    , KC_LEFT_BRACKET , KC_RIGHT_BRACKET , KC_DOLLAR , _______ , _______,
+      _______ , KC_EXCLAIM , KC_EQUAL      , KC_LEFT_PAREN , KC_RIGHT_PAREN , KC_TILDE ,     KC_MINUS , KC_LGUI         , KC_LCTL          , KC_LALT   , _______ , ARROW  ,
+      _______ , _______    , KC_CIRCUMFLEX , KC_AMPR       , KC_PLUS        , _______  ,     _______  , KC_PIPE         , KC_GRAVE         , KC_HASH   , _______ , _______,
+      _______ , _______    , _______       , _______       , _______        , _______  ,     _______  , _______         , _______          , _______   , _______ , _______
 ),
 
 //        ┌─────┬─────┬─────┬────────┬──────┬─────┐   ┌──────┬────────┬────────┬──────┬─────┬─────┐
@@ -119,6 +168,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     const uint8_t mods         = get_mods();
     const uint8_t oneshot_mods = get_oneshot_mods();
 
+    if (!update_flow(keycode, record->event.pressed, record->event.key)) return false;
+
     switch (keycode) {
         case UPDIR: // Types ../ to go up a directory on the shell.
             if (record->event.pressed) {
@@ -141,6 +192,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             return false;
     }
     return true;
+}
+
+void matrix_scan_user(void) {
+    flow_matrix_scan();
 }
 
 /*

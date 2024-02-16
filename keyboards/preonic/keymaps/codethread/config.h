@@ -11,3 +11,6 @@
 
 // trying this for home mods
 #define IGNORE_MOD_TAP_INTERRUPT
+
+#define FLOW_COUNT 7
+#define FLOW_LAYERS_COUNT 2
