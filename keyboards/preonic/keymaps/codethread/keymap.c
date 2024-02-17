@@ -10,6 +10,7 @@ enum preonic_layers {
   _SYMBOLS_R,
   _NUMBERS,
   _ADJUST,
+  _NAV
 };
 
 enum custom_keycodes {
