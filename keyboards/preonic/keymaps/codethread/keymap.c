@@ -136,6 +136,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    // If you find that you frequently trigger the modifier of your mod-tap(s) by accident,
+    // for example, that's a sign that your tapping term may be too low so tap DT_UP a few
+    // times to increase the tapping term until that no longer happens. On the flip side,
+    // if you get superfluous characters when you actually intended to momentarily activate
+    // a layer, tap DT_DOWN to lower the tapping term.
     switch (keycode) {
         case LSFT_T(KC_A):
         case LALT_T(KC_S):
@@ -145,8 +150,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LCTL_T(KC_K):
         case LALT_T(KC_L):
         case LSFT_T(KC_SCLN):
-            return 250;
+            // found 200 pretty good, just dropping a little
+            return 220;
         default:
+            // default 200
+            // 140 works well for most keys
+            // 100,pretty darn tough, need to really tap that mofo
             return 140;
     }
 }
