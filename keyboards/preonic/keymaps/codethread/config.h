@@ -10,6 +10,7 @@
 // default 200
 // 100,pretty darn tough, need to really tap that mofo
 #define TAPPING_TERM_PER_KEY
+// this should make home row mods better, but i can't jj(hold) and expect to scroll down. Probably a good thing
 #define QUICK_TAP_TERM 0
-// turns out i need this as I'm running very old qmk software!
-#define IGNORE_MOD_TAP_INTERRUPT
+// this seems to feel better but I don't think it should
+#define PERMISSIVE_HOLD
