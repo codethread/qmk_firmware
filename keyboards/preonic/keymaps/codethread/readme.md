@@ -64,6 +64,14 @@ qmk compile && qmk flash
 sleep 3sec; qmk compile; qmk flash
 ```
 
+## Update
+
+```sh
+git remote add upstream git@github.com:qmk/qmk_firmware.git
+git fetch upstream
+git rebase upstream/master
+```
+
 ## Links
 
 -   [key macros](https://getreuer.info/posts/keyboards/macros/index.html)
