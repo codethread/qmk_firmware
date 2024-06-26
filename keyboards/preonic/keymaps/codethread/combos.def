@@ -1,0 +1,27 @@
+#define PASTA "I'd just like to interject for a moment."
+
+// clang-format off
+
+// LEFT
+COMB(weEsc,         KC_1,             KC_W,    KC_E)
+COMB(erEsc,         KC_1,             KC_E,    KC_R)
+COMB(xvEnt,         KC_1,             KC_X,    KC_V)
+COMB(cvEnt,         KC_1,             KC_C,    KC_V)
+// RIGHT
+COMB(uiEsc,         KC_1,             KC_U,    KC_I)
+COMB(ioEnt,         KC_BACKSLASH,     KC_I,    KC_O)
+COMB(m_comma_Ent,   KC_1,             KC_M,    KC_COMM)
+COMB(comma_dot_Ent, KC_1,             KC_COMM, KC_DOT)
+// RIGHT
+COMB(jkCol,         KC_ESC,            K_J,     K_K)
+COMB(klCol,         PASTA,            K_K,     K_L)
+COMB(l_semi_Col,    PASTA,            K_L,     K_SEMI)
+// PAIR
+COMB(fj,            KC_LCBR,          K_F,     K_J)
+COMB(ru,            KC_RIGHT_BRACKET, KC_R,    KC_U)
+
+// clang-format on
+
+// keys that mod: = \ _ `
+// popular keys : (){} => !
+// vim keys     : * % @ &

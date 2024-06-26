@@ -16,6 +16,8 @@
 #define K_L    LALT_T(KC_L)
 #define K_SEMI LSFT_T(KC_SCLN)
 
+#include "g/keymap_combo.h"
+
 // clang-format off
 enum preonic_layers {
   _QWERTY,
@@ -127,6 +129,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 // clang-format on
+
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    switch (index) {
+        case klCol:
+        case jkCol:
+            return 10;
+    }
+
+    return COMBO_TERM;
+}
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     // If you find that you frequently trigger the modifier of your mod-tap(s) by accident,
