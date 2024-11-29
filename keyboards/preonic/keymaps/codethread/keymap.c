@@ -4,6 +4,16 @@
 
 #define MAC_SHOW_APPS KC_F14
 
+#define K_A LT(_NAV, KC_A)
+#define K_S LALT_T(KC_S)
+#define K_D LCTL_T(KC_D)
+#define K_F LGUI_T(KC_F)
+
+#define K_J LGUI_T(KC_J)
+#define K_K LCTL_T(KC_K)
+#define K_L LALT_T(KC_L)
+#define K_SEMI ALL_T(KC_SCLN)
+
 // clang-format off
 enum preonic_layers {
   _QWERTY,
@@ -19,23 +29,23 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//        ┌────────┬──────┬──────┬──────┬──────────────┬────────────┐   ┌────────────────┬──────┬──────┬──────┬──────┬──────┐
-//        │  esc   │  1   │  2   │  3   │      4       │     5      │   │       6        │  7   │  8   │  9   │  0   │ f12  │
-//        ├────────┼──────┼──────┼──────┼──────────────┼────────────┤   ├────────────────┼──────┼──────┼──────┼──────┼──────┤
-//        │  tab   │  q   │  w   │  e   │      r       │     t      │   │       y        │  u   │  i   │  o   │  p   │ ent  │
-//        ├────────┼──────┼──────┼──────┼──────────────┼────────────┤   ├────────────────┼──────┼──────┼──────┼──────┼──────┤
-//        │ ^(esc) │ 󰘶(a) │ ⎇(s) │ ^(d) │     󰘳(f)     │     g      │   │       h        │ 󰘳(j) │ ^(k) │ ⎇(l) │ 󰘶(;) │  '   │
-//        ├────────┼──────┼──────┼──────┼──────────────┼────────────┤   ├────────────────┼──────┼──────┼──────┼──────┼──────┤
-//        │   󰘶    │  z   │  x   │  c   │      v       │     b      │   │       n        │  m   │  ,   │  .   │  /   │ rsft │
-//        ├────────┼──────┼──────┼──────┼──────────────┼────────────┤   ├────────────────┼──────┼──────┼──────┼──────┼──────┤
-//        │        │      │      │  󰘳   │ MO(_SYMBOLS) │ MO(_NUMBS) │   │ LT(_NAV, bspc) │ "_"  │     │      │      │      │
-//        └────────┴──────┴──────┴──────┴──────────────┴────────────┘   └────────────────┴──────┴──────┴──────┴──────┴──────┘
+//        ┌─────┬─────┬─────┬─────┬──────────────┬────────────┐   ┌────────────────┬─────┬─────┬─────┬────────┬──────┐
+//        │ esc │  1  │  2  │  3  │      4       │     5      │   │       6        │  7  │  8  │  9  │   0    │ f12  │
+//        ├─────┼─────┼─────┼─────┼──────────────┼────────────┤   ├────────────────┼─────┼─────┼─────┼────────┼──────┤
+//        │ tab │  q  │  w  │  e  │      r       │     t      │   │       y        │  u  │  i  │  o  │   p    │ ent  │
+//        ├─────┼─────┼─────┼─────┼──────────────┼────────────┤   ├────────────────┼─────┼─────┼─────┼────────┼──────┤
+//        │  ^  │ K_A │ K_S │ K_D │     K_F      │     g      │   │       h        │ K_J │ K_K │ K_L │ K_SEMI │  '   │
+//        ├─────┼─────┼─────┼─────┼──────────────┼────────────┤   ├────────────────┼─────┼─────┼─────┼────────┼──────┤
+//        │  󰘶  │  z  │  x  │  c  │      v       │     b      │   │       n        │  m  │  ,  │  .  │   /    │ rsft │
+//        ├─────┼─────┼─────┼─────┼──────────────┼────────────┤   ├────────────────┼─────┼─────┼─────┼────────┼──────┤
+//        │     │     │     │  󰘳  │ MO(_SYMBOLS) │ MO(_NUMBS) │   │ LT(_NAV, bspc) │ "_" │    │     │        │      │
+//        └─────┴─────┴─────┴─────┴──────────────┴────────────┘   └────────────────┴─────┴─────┴─────┴────────┴──────┘
 [_QWERTY] = LAYOUT_preonic_grid(
-      KC_ESC         , KC_1         , KC_2         , KC_3         , KC_4         , KC_5       ,     KC_6              , KC_7         , KC_8         , KC_9         , KC_0            , KC_F12 ,
-      KC_TAB         , KC_Q         , KC_W         , KC_E         , KC_R         , KC_T       ,     KC_Y              , KC_U         , KC_I         , KC_O         , KC_P            , KC_ENT ,
-      LCTL_T(KC_ESC) , LSFT_T(KC_A) , LALT_T(KC_S) , LCTL_T(KC_D) , LGUI_T(KC_F) , KC_G       ,     KC_H              , LGUI_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , LSFT_T(KC_SCLN) , KC_QUOT,
-      KC_LSFT        , KC_Z         , KC_X         , KC_C         , KC_V         , KC_B       ,     KC_N              , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH         , KC_RSFT,
-      _______        , _______      , _______      , KC_LGUI      , MO(_SYMBOLS) , MO(_NUMBS) ,     LT(_NAV, KC_BSPC) , KC_SPC       , KC_HYPR      , _______      , _______         , _______
+      KC_ESC  , KC_1    , KC_2    , KC_3    , KC_4         , KC_5       ,     KC_6              , KC_7   , KC_8    , KC_9    , KC_0    , KC_F12 ,
+      KC_TAB  , KC_Q    , KC_W    , KC_E    , KC_R         , KC_T       ,     KC_Y              , KC_U   , KC_I    , KC_O    , KC_P    , KC_ENT ,
+      KC_LCTL , K_A     , K_S     , K_D     , K_F          , KC_G       ,     KC_H              , K_J    , K_K     , K_L     , K_SEMI  , KC_QUOT,
+      KC_LSFT , KC_Z    , KC_X    , KC_C    , KC_V         , KC_B       ,     KC_N              , KC_M   , KC_COMM , KC_DOT  , KC_SLSH , KC_RSFT,
+      _______ , _______ , _______ , KC_LGUI , MO(_SYMBOLS) , MO(_NUMBS) ,     LT(_NAV, KC_BSPC) , KC_SPC , KC_HYPR , _______ , _______ , _______
 ),
 
 //        ┌─────┬─────┬─────┬─────┬─────┬─────┐   ┌─────────────┬──────┬─────┬─────┬─────┬─────┐
@@ -123,15 +133,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     // if you get superfluous characters when you actually intended to momentarily activate
     // a layer, tap DT_DOWN to lower the tapping term.
     switch (keycode) {
-        case LSFT_T(KC_A):
-        case LALT_T(KC_S):
-        case LCTL_T(KC_D):
-        case LGUI_T(KC_F):
+        case K_A:
+        case K_S:
+        case K_D:
+        case K_F:
 
-        case LGUI_T(KC_J):
-        case LCTL_T(KC_K):
-        case LALT_T(KC_L):
-        case LSFT_T(KC_SCLN):
+        case K_J:
+        case K_K:
+        case K_L:
+        case K_SEMI:
 
         case LALT_T(KC_5):
         case LCTL_T(KC_3):
