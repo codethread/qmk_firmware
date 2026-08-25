@@ -8,4 +8,8 @@
 // this seems to feel better but I don't think it should
 #define PERMISSIVE_HOLD
 // tries to only hold if opposite hands used (corrects my bad typing habbits)
-#define CHORDAL_HOLD
+// #define CHORDAL_HOLD
+// if keys typed in quick succession i.e a flow of keys
+// assume no mods. This is more comfortable so far than CHORDAL_HOLD
+// as that wasn't allowing alt+bspc
+#define FLOW_TAP_TERM 150
