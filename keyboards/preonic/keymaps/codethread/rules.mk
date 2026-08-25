@@ -1,1 +1,2 @@
 AUDIO_ENABLE = false
+MOUSEKEY_ENABLE = yes

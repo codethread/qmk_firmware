@@ -1,16 +1,11 @@
 #pragma once
 
-// If you find that you frequently trigger the modifier of your mod-tap(s) by accident,
-// for example, that's a sign that your tapping term may be too low so tap DT_UP a few
-// times to increase the tapping term until that no longer happens. On the flip side,
-// if you get superfluous characters when you actually intended to momentarily activate
-// a layer, tap DT_DOWN to lower the tapping term.
-// #define TAPPING_TERM 140
-// 140 works well, unless using home row mods
-// default 200
-// 100,pretty darn tough, need to really tap that mofo
+// managed by `get_tapping_term` per key
 #define TAPPING_TERM_PER_KEY
-// this should make home row mods better, but i can't jj(hold) and expect to scroll down. Probably a good thing
+// this should make home row mods better, but i can't jj(hold) and expect to
+// scroll down. Probably a good thing
 #define QUICK_TAP_TERM 150
 // this seems to feel better but I don't think it should
 #define PERMISSIVE_HOLD
+// tries to only hold if opposite hands used (corrects my bad typing habbits)
+#define CHORDAL_HOLD

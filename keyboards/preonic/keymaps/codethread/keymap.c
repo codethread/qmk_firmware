@@ -107,21 +107,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______ , _______       , _______ , _______       , MO(_ADJUST) , _______ ,     _______            , _______    , _______    , _______             , _______ , _______
 ),
 
-//        ┌─────────┬─────┬─────┬──────┬──────┬─────┐   ┌──────┬──────┬──────┬──────┬─────┬─────┐
-//        │ QK_BOOT │     │     │      │      │     │   │      │      │      │      │     │     │
-//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├──────┼──────┼──────┼──────┼─────┼─────┤
-//        │         │     │     │ G(-) │ G(+) │     │   │ wh_u │ btn1 │ btn2 │ wh_d │     │     │
-//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├──────┼──────┼──────┼──────┼─────┼─────┤
-//        │         │     │     │ vold │ volu │     │   │ ms_l │ ms_d │ ms_u │ ms_r │     │     │
-//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├──────┼──────┼──────┼──────┼─────┼─────┤
-//        │         │     │     │      │      │     │   │ mprv │ mply │ mstp │ mnxt │     │     │
-//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├──────┼──────┼──────┼──────┼─────┼─────┤
-//        │         │     │     │      │      │     │   │      │      │      │      │     │     │
-//        └─────────┴─────┴─────┴──────┴──────┴─────┘   └──────┴──────┴──────┴──────┴─────┴─────┘
+//        ┌─────────┬─────┬─────┬──────┬──────┬─────┐   ┌─────────┬─────────┬─────────┬─────────┬─────┬─────┐
+//        │ QK_BOOT │     │     │      │      │     │   │         │         │         │         │     │     │
+//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├─────────┼─────────┼─────────┼─────────┼─────┼─────┤
+//        │         │     │     │ G(-) │ G(+) │     │   │ MS_WHLU │ MS_BTN1 │ MS_BTN2 │ MS_WHLD │     │     │
+//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├─────────┼─────────┼─────────┼─────────┼─────┼─────┤
+//        │         │     │     │ vold │ volu │     │   │ MS_LEFT │ MS_DOWN │  MS_UP  │ MS_RGHT │     │     │
+//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├─────────┼─────────┼─────────┼─────────┼─────┼─────┤
+//        │         │     │     │      │      │     │   │  mprv   │  mply   │  mstp   │  mnxt   │     │     │
+//        ├─────────┼─────┼─────┼──────┼──────┼─────┤   ├─────────┼─────────┼─────────┼─────────┼─────┼─────┤
+//        │         │     │     │      │      │     │   │         │         │         │         │     │     │
+//        └─────────┴─────┴─────┴──────┴──────┴─────┘   └─────────┴─────────┴─────────┴─────────┴─────┴─────┘
 [_ADJUST] = LAYOUT_preonic_grid(
       QK_BOOT , _______ , _______ , _______           , _______         , _______ ,     _______             , _______             , _______       , _______             , _______ , _______,
-      _______ , _______ , _______ , G(KC_MINUS)       , G(KC_PLUS)      , _______ ,     KC_MS_WH_UP         , KC_BTN1             , KC_BTN2       , KC_MS_WH_DOWN       , _______ , _______,
-      _______ , _______ , _______ , KC_AUDIO_VOL_DOWN , KC_AUDIO_VOL_UP , _______ ,     KC_MS_LEFT          , KC_MS_DOWN          , KC_MS_UP      , KC_MS_RIGHT         , _______ , _______,
+      _______ , _______ , _______ , G(KC_MINUS)       , G(KC_PLUS)      , _______ ,     MS_WHLU             , MS_BTN1             , MS_BTN2       , MS_WHLD             , _______ , _______,
+      _______ , _______ , _______ , KC_AUDIO_VOL_DOWN , KC_AUDIO_VOL_UP , _______ ,     MS_LEFT             , MS_DOWN             , MS_UP         , MS_RGHT             , _______ , _______,
       _______ , _______ , _______ , _______           , _______         , _______ ,     KC_MEDIA_PREV_TRACK , KC_MEDIA_PLAY_PAUSE , KC_MEDIA_STOP , KC_MEDIA_NEXT_TRACK , _______ , _______,
       _______ , _______ , _______ , _______           , _______         , _______ ,     _______             , _______             , _______       , _______             , _______ , _______
 )
@@ -129,11 +129,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    // If you find that you frequently trigger the modifier of your mod-tap(s) by accident,
-    // for example, that's a sign that your tapping term may be too low so tap DT_UP a few
-    // times to increase the tapping term until that no longer happens. On the flip side,
-    // if you get superfluous characters when you actually intended to momentarily activate
-    // a layer, tap DT_DOWN to lower the tapping term.
+    // accidentally modding => move dt UP
+    // getting chars when you wanted mod => dt DOWN
+    // NOTE: these numbers were all before `#define CHORDAL_HOLD` was added, so they might have nicer options now
     switch (keycode) {
         case K_A:
         case K_S:
